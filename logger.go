@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/Tinddd28/tlog/handlers/slogpretty"
+	"github.com/Tinddd28/tlog/handlers/tlog"
 )
 
 type LogOpts struct {
@@ -25,7 +25,7 @@ func NewLogOpts(level string, dir string, format string, savingDays int) *LogOpt
 
 func SetupLogger(opts LogOpts) (*slog.Logger, error) {
 	var log_ *slog.Logger
-	log_, err := SetupPrettyLogger(opts)
+	log_, err := SetupTlogLogger(opts)
 	if err != nil {
 		return nil, err
 	}
@@ -33,7 +33,7 @@ func SetupLogger(opts LogOpts) (*slog.Logger, error) {
 	return log_, nil
 }
 
-func SetupPrettyLogger(op LogOpts) (*slog.Logger, error) {
+func SetupTlogLogger(op LogOpts) (*slog.Logger, error) {
 	if err := os.MkdirAll(op.dir, os.ModePerm); err != nil {
 		return nil, err
 	}
@@ -48,7 +48,7 @@ func SetupPrettyLogger(op LogOpts) (*slog.Logger, error) {
 	case "warn":
 		lvl = slog.LevelWarn
 	}
-	opts := slogpretty.LoggerOptions{
+	opts := tlog.LoggerOptions{
 		SlogOpts: &slog.HandlerOptions{
 			Level: lvl,
 		},
