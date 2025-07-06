@@ -4,7 +4,7 @@ import (
 	"log/slog"
 	"os"
 
-	"github.com/Tinddd28/tlog/handlers/tlog"
+	tlog "github.com/Tinddd28/tlog/handlers/init"
 )
 
 type LogOpts struct {
