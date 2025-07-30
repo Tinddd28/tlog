@@ -20,7 +20,7 @@ func main() {
 
     logOpts := tlog.NewLogOpts(level, dir, format, savingDays)
 
-    logger, err := tlog.SetupLogger(slogOpts)
+    logger, err := tlog.SetupLogger(logOpts)
     if err != nil {
         os.Exit(1)
     }
